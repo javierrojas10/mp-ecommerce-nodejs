@@ -140,8 +140,8 @@
 </div>
 
 <script>
-	const mp = new MercadoPago('TEST-179e1cbc-8f9d-4b85-944b-112d3c67838e', {
-	    locale: 'es-MX',
+	const mp = new MercadoPago('{{APP_PUBLIC_KEY}}', {
+	    locale: '{{LOCALE}}',
     }); 
     const preferenceId = "{{preferenceId}}"; const
 	bricksBuilder = mp.bricks(); bricksBuilder.create("wallet",
