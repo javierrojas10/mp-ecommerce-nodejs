@@ -96,7 +96,7 @@ app.get('/failure', function (req, res) {
     res.render('failure', {...req.query, view: 'failure'});
 });
 
-app.get('/webhook', function (req, res) {
+app.post('/webhook', function (req, res) {
     console.log(req.query, req.body);
     res.status(200).send('OK');
 });
