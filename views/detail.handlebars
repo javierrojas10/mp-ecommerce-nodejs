@@ -125,7 +125,7 @@
 								</h3>
 							</div>
 							<div id='wallet_container'>
-                                Cargando Mercadopago...
+                                <div id="loadingText">Cargando Mercadopago...</div>
                             </div>
 						</div>
 					</div>
@@ -141,7 +141,18 @@
     }); 
     const preferenceId = "{{preferenceId}}"; const
 	bricksBuilder = mp.bricks(); bricksBuilder.create("wallet",
-	"wallet_container", { initialization: { preferenceId, redirectMode: "modal" },
+	"wallet_container", { 
+		initialization: { 
+			preferenceId, 
+			redirectMode: "modal", 
+		},
+		callbacks: {
+			onReady: () => {
+				const loadingText = document.getElementById('loadingText');
+				loadingText.style.display = 'none';
+			},
+		}
+	
 	});
 
 </script>
