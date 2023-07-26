@@ -2,7 +2,7 @@ require('dotenv').config()
 var express = require('express');
 var exphbs = require('express-handlebars');
 var mercadopago = require('mercadopago');
-const { PROD_ACCESS_TOKEN, PAYER_EMAIL, INTEGRATOR_ID, APP_PUBLIC_KEY, PORT, EXTERNAL_REFERENCE } = process.env
+const { PROD_ACCESS_TOKEN, PAYER_EMAIL, INTEGRATOR_ID, APP_PUBLIC_KEY, PORT, EXTERNAL_REFERENCE, LOCALE } = process.env
 var port = PORT || 3000
 
 var app = express();
@@ -75,7 +75,12 @@ app.get('/detail', function (req, res) {
         .then(function (response) {
             console.info(response.body.id)
             let init_point = response.body.init_point;
-            res.render('detail', { ...req.query, init_point, preferenceId: response.body.id, view: 'detail', APP_PUBLIC_KEY });
+            res.render('detail', { ...req.query, 
+                init_point, 
+                preferenceId: response.body.id, 
+                view: 'detail', 
+                APP_PUBLIC_KEY,
+                LOCALE });
         }).catch(function (error) {
             console.log(error);
             res.render('failure', {...req.query, view: 'failure'});
