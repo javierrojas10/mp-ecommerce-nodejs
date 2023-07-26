@@ -57,7 +57,7 @@ app.post('/webhook', function (req, res) {
 
     console.log('webhook', { type, data })
 
-    res.status(200).send('OK');
+    res.status(200);
 });
 
 app.listen(port);
