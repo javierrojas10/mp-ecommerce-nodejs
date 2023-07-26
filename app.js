@@ -2,7 +2,7 @@ require('dotenv').config()
 var express = require('express');
 var exphbs = require('express-handlebars');
 const { getPreference } = require('./lib/createPreference');
-const { APP_PUBLIC_KEY, PORT, LOCALE } = process.env
+const { APP_PUBLIC_KEY, PORT, LOCALE, INTEGRATOR_ID } = process.env
 const mercadopago = require('mercadopago');
 var port = PORT || 3000
 
@@ -28,11 +28,11 @@ app.get('/detail', function (req, res) {
    })
     mercadopago.preferences.create(preference)
         .then(function (response) {
-            console.info(response.body.id)
             let init_point = response.body.init_point;
             res.render('detail', { ...req.query, 
                 APP_PUBLIC_KEY,
                 LOCALE,
+                INTEGRATOR_ID,
                 init_point, 
                 preferenceId: response.body.id, 
                 view: 'item', 
